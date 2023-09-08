@@ -9,41 +9,52 @@
         продать</p>
 </div>
 
+{% for object in object_list%}
 <div class="container">
     <div class="row text-center">
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Удобный сервис рассылок</h4>
+                    <h4 class="my-0 font-weight-normal">{{ object.product_name }}</h4>
+                </div>
+                <div>
+                    <img class="card-img-top" src="..." alt="Card image cap">
                 </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$ 140</h1>
+                    <h1 class="card-title pricing-card-title">₽ {{ object.purchase_price }}</h1>
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- Неограниченная лицензия</li>
-                        <li>- Поддержка</li>
-                        <li>- Установка на сервер</li>
-                        <li>- Получение обновлений</li>
+                        <p><strong>Описание:</strong> {{ object.description|truncatechars:100 }}</p>
+                        <p><strong>Категория:</strong> {{ object.category }}</p>
+                        <p><strong>Дата создания:</strong> {{ object.created_date }}</p>
+                        <p><strong>Дата последнего изменения:</strong> {{ object.modified_date }}</p>
+                        <a href="\product\#" class="btn btn-lg btn-block btn-outline-primary">Просмотр</a>
                     </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
+{% endfor %}
 
+<div class="container">
     <div class="row text-center">
         {% for object in object_list%}
-            <div class="card mb-4 box-shadow">
+            <div class="col-3">
+                <div class="card mb-4 box-shadow">
 
-                <div class="card-header">
-                    <div class="card-body">
-                        <h2> {{ object | title }} </h2>
+                    <div class="card-header">
+                        <div class="card-body">
+                        <h5> {{ object | title }} </h5>
                         <h5 class="card-title">{{ object.product_name }}</h5>
                         <p><strong>Цена:</strong> {{ object.purchase_price }}</p>
-                        <p><strong>Описание:</strong> {{ object.description }}</p>
+                        <p><strong>Описание:</strong> {{ object.description|truncatechars:100 }}</p>
                         <p><strong>Категория:</strong> {{ object.category }}</p>
                         <p><strong>Дата создания:</strong> {{ object.created_date }}</p>
                         <p><strong>Дата последнего изменения:</strong> {{ object.modified_date }}</p>
-                        <a href="\product\#" class="btn btn-primary">Просмотр</a>
+                        <a href="\product\#" class="btn btn-lg btn-block btn-outline-primary">Просмотр</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         {% endfor %}
@@ -51,6 +62,4 @@
 </div>
 
 <script src="/static/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 {% endblock %}
