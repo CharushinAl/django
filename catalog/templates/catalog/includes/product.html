@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row text-center">
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ object.product_name }}</h4>
+                </div>
+                <div>
+                    <img class="card-img-top"
+                         src=" object.image_preview|media_path"
+                         alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">₽ {{ object.purchase_price }}</h1>
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <p><strong>Описание:</strong> {{ object.description|truncatechars:100 }}</p>
+                        <p><strong>Категория:</strong> {{ object.category }}</p>
+                        <p><strong>Дата создания:</strong> {{ object.created_date }}</p>
+                        <p><strong>Дата последнего изменения:</strong> {{ object.modified_date }}</p>
+                        <a href="{% url 'catalog:product'%}" class="btn btn-lg btn-block btn-outline-primary">Просмотр</a>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

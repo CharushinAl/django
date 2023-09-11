@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from catalog.models import Product
 
 
@@ -15,18 +15,24 @@ def contacts(request):
 
 
 def home(request):
-    products = Product.objects.all()
     context = {
-        'object_list': products,
+        'object_list': Product.objects.all(),
         'title': 'Catalog'
     }
     return render(request, 'catalog/home.html', context)
 
 
 def product(request):
-    products = Product.objects.all()
     context = {
-        'object_list': products,
+        'object_list': Product.objects.all(),
+        'title': 'Product'
+    }
+    return render(request, 'catalog/product.html', context)
+
+
+def product_detail(request, product_id: int):
+    context = {
+        'object_list': Product.objects.filter(product_id=product_id),
         'title': 'Product'
     }
     return render(request, 'catalog/product.html', context)
